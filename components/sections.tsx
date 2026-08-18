@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import Image from "next/image";
 import { Badge, SectionHeading, PrimaryButton, DashboardMock } from "./ui";
 
 /* ---------------- HERO ---------------- */
@@ -115,10 +116,12 @@ export function Problem() {
 }
 
 /* ---------------- SEGMENTOS ---------------- */
-function SegmentCard({ icon, title, text, tags }: { icon: ReactNode; title: string; text: string; tags: string }) {
+function SegmentCard({ icon, title, text, tags, image }: { icon: ReactNode; title: string; text: string; tags: string; image: string }) {
   return (
     <div className="group rounded-2xl border border-ink-border bg-ink-card p-6 transition hover:border-brand-500/50">
-      <div className="mb-5 aspect-video rounded-xl border border-ink-border bg-gradient-to-br from-brand-500/20 via-ink-800 to-ink-900 shadow-glow-sm" />
+      <div className="mb-5 overflow-hidden rounded-xl shadow-glow-sm">
+        <Image src={image} alt={title} width={430} height={210} className="h-auto w-full" />
+      </div>
       <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-brand-gradient text-white">
         {icon}
       </div>
@@ -144,18 +147,21 @@ export function Segments() {
             title="Saúde & Bem-estar"
             text="App próprio pra agendamento, recorrência e relacionamento com o paciente."
             tags="Clínicas · consultórios · terapias"
+            image="/figma-assets/segment-saude.png"
             icon={<svg className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7-4.35-9.5-8.5C.9 9.5 2.5 6 6 6c2 0 3.2 1.2 4 2.3C10.8 7.2 12 6 14 6c3.5 0 5.1 3.5 3.5 6.5C19 16.65 12 21 12 21z" /></svg>}
           />
           <SegmentCard
             title="Beleza & Estética"
             text="App exclusivo com a sua marca pra fidelizar e elevar a percepção do seu serviço."
             tags="Barbearias · salões · estúdios"
+            image="/figma-assets/segment-beleza.png"
             icon={<svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="6" cy="6" r="3" /><circle cx="6" cy="18" r="3" /><path d="M20 4 8.12 15.88M14.47 14.48 20 20M8.12 8.12 12 12" /></svg>}
           />
           <SegmentCard
             title="Fitness & Performance"
             text="App sob medida pra agenda, planos e engajamento dos seus alunos."
             tags="Estúdios · personal · boxes"
+            image="/figma-assets/segment-fitness.png"
             icon={<svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M6.5 6.5 17.5 17.5M4 8l4-4M20 16l-4 4M3 15l6-6M15 3l6 6" strokeLinecap="round" /></svg>}
           />
         </div>
@@ -187,7 +193,16 @@ export function Differential() {
     <section className="py-24">
       <div className="section">
         <SectionHeading badge="O grande diferencial" title="A diferença entre" highlight="alugar e ter." />
-        <div className="mt-14 grid gap-6 lg:grid-cols-2">
+        <div className="mx-auto mt-12 max-w-4xl overflow-hidden rounded-2xl border border-ink-border shadow-glow-sm">
+          <Image
+            src="/figma-assets/dashboard-compare-blur.png"
+            alt="Comparação entre app genérico e app exclusivo Nexora"
+            width={1189}
+            height={603}
+            className="h-auto w-full"
+          />
+        </div>
+        <div className="mt-10 grid gap-6 lg:grid-cols-2">
           <div className="rounded-2xl border border-ink-border bg-ink-card p-6">
             <div className="mb-6 flex items-center gap-3">
               <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-ink-border bg-ink-800 text-slate-400">
@@ -302,6 +317,25 @@ export function Cases() {
             <CaseCard seg="Beleza & Estética" quote="“Deixei de dividir espaço com concorrente. Agora a experiência é 100% da minha marca.”" name="Rafael Nunes" biz="Studio Lumière" metric="4.9 ★ de avaliação" />
             <CaseCard seg="Fitness & Performance" quote="“Os alunos acompanham planos e agenda no meu próprio app. Engajamento disparou.”" name="Camila Torres" biz="Box Iron Fit" metric="+61% de engajamento" />
           </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ---------------- SHOWCASE DASHBOARD ---------------- */
+export function DashboardShowcase() {
+  return (
+    <section className="py-10">
+      <div className="section">
+        <div className="relative mx-auto max-w-4xl overflow-hidden rounded-2xl border border-ink-border shadow-glow">
+          <Image
+            src="/figma-assets/dashboard-lucas.png"
+            alt="Dashboard exclusivo com a marca do cliente Nexora"
+            width={2396}
+            height={1350}
+            className="h-auto w-full"
+          />
         </div>
       </div>
     </section>

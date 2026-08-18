@@ -8,6 +8,7 @@ import {
   Differential,
   HowItWorks,
   Cases,
+  DashboardShowcase,
   Audience,
   ContactCTA,
 } from "@/components/sections";
@@ -23,6 +24,7 @@ export default function Home() {
       <Differential />
       <HowItWorks />
       <Cases />
+      <DashboardShowcase />
       <Audience />
       <ContactCTA />
       <Footer />
