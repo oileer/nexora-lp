@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-ink-900 text-slate-200 antialiased;
+  background-image:
+    radial-gradient(50% 40% at 50% 0%, rgba(29, 111, 242, 0.1) 0%, rgba(8, 11, 18, 0) 100%);
+}
+
+/* Fundo pontilhado usado nos blocos com glow */
+.dot-grid {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+.text-gradient {
+  @apply bg-brand-gradient bg-clip-text text-transparent;
+}
+
+.section {
+  @apply mx-auto w-full max-w-6xl px-6;
+}
+
+/* Scrollbar discreta */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #05070c;
+}
+::-webkit-scrollbar-thumb {
+  background: #1b2333;
+  border-radius: 8px;
+}
