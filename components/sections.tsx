@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 import Image from "next/image";
 import { Badge, SectionHeading, PrimaryButton, DashboardMock } from "./ui";
+import { LogoMark } from "./Logo";
 
 /* ---------------- HERO ---------------- */
 export function Hero() {
@@ -44,9 +45,7 @@ export function Marquee() {
         {row.map((t, i) => (
           <span key={i} className="flex items-center gap-10 text-lg font-semibold uppercase tracking-wide text-white/90">
             {t}
-            <svg className="h-5 w-5 text-brand-400" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-              <path d="M7 21 L7 8 L12 15 L12 3 L17 3 L17 16 L12 9 L12 21 Z" />
-            </svg>
+            <LogoMark className="h-5 w-5" />
           </span>
         ))}
       </div>
@@ -159,7 +158,7 @@ export function Problem() {
 }
 
 /* ---------------- SEGMENTOS ---------------- */
-function SegmentCard({ icon, title, text, tags, image }: { icon: ReactNode; title: string; text: string; tags: string; image: string }) {
+function SegmentCard({ icon, title, text, tags, image, cta }: { icon: ReactNode; title: string; text: string; tags: string; image: string; cta: string }) {
   return (
     <div className="group rounded-2xl border border-ink-border bg-ink-card p-6 transition hover:border-brand-500/50">
       <div className="mb-5 overflow-hidden rounded-xl shadow-glow-sm">
@@ -171,6 +170,9 @@ function SegmentCard({ icon, title, text, tags, image }: { icon: ReactNode; titl
       <h3 className="text-xl font-semibold text-white">{title}</h3>
       <p className="mt-2 text-sm leading-relaxed text-slate-400">{text}</p>
       <p className="mt-4 text-xs uppercase tracking-wide text-slate-500">{tags}</p>
+      <a href="#contato" className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-brand-400 transition hover:text-brand-300">
+        {cta} <span aria-hidden>→</span>
+      </a>
     </div>
   );
 }
@@ -191,6 +193,7 @@ export function Segments() {
             title="Saúde & Bem-estar"
             text="App próprio pra agendamento, recorrência e relacionamento com o paciente."
             tags="Clínicas · consultórios · terapias"
+            cta="Ver solução para Saúde"
             image="/figma-assets/segment-saude.png"
             icon={<svg className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7-4.35-9.5-8.5C.9 9.5 2.5 6 6 6c2 0 3.2 1.2 4 2.3C10.8 7.2 12 6 14 6c3.5 0 5.1 3.5 3.5 6.5C19 16.65 12 21 12 21z" /></svg>}
           />
@@ -198,6 +201,7 @@ export function Segments() {
             title="Beleza & Estética"
             text="App exclusivo com a sua marca pra fidelizar e elevar a percepção do seu serviço."
             tags="Barbearias · salões · estúdios"
+            cta="Ver solução para Beleza"
             image="/figma-assets/segment-beleza.png"
             icon={<svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="6" cy="6" r="3" /><circle cx="6" cy="18" r="3" /><path d="M20 4 8.12 15.88M14.47 14.48 20 20M8.12 8.12 12 12" /></svg>}
           />
@@ -205,6 +209,7 @@ export function Segments() {
             title="Fitness & Performance"
             text="App sob medida pra agenda, planos e engajamento dos seus alunos."
             tags="Estúdios · personal · boxes"
+            cta="Ver solução para Fitness"
             image="/figma-assets/segment-fitness.png"
             icon={<svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M6.5 6.5 17.5 17.5M4 8l4-4M20 16l-4 4M3 15l6-6M15 3l6 6" strokeLinecap="round" /></svg>}
           />
