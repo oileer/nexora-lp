@@ -490,8 +490,19 @@ function CheckItem({ text, ok }: { text: string; ok: boolean }) {
 
 export function Audience() {
   return (
-    <section className="py-24">
-      <div className="section grid items-center gap-12 lg:grid-cols-2">
+    <section className="relative overflow-hidden py-24">
+      <div
+        className="pointer-events-none absolute left-1/2 top-0 h-[420px] w-[820px] -translate-x-1/2 -translate-y-1/2 animate-breathe"
+        style={{
+          background:
+            "radial-gradient(circle at 50% 50%, rgba(79,124,255,0.55) 0%, rgba(79,124,255,0.25) 28%, rgba(79,124,255,0.08) 50%, rgba(5,7,11,0) 70%)",
+        }}
+      />
+      <div
+        className="dot-grid pointer-events-none absolute left-1/2 top-0 h-[420px] w-[820px] -translate-x-1/2 -translate-y-1/2 opacity-60"
+        style={{ maskImage: "radial-gradient(circle at 50% 50%, black 0%, transparent 65%)" }}
+      />
+      <div className="section relative grid items-center gap-12 lg:grid-cols-2">
         <div>
           <SectionHeading center={false} badge="Para quem é" title="Esse projeto não é" highlight="para todo mundo." />
           <p className="mt-6 max-w-md text-base leading-relaxed text-slate-400">
