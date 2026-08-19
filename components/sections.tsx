@@ -300,25 +300,31 @@ function CompareRow({ text, ok, icon }: { text: string; ok?: boolean; icon: keyo
 export function Differential() {
   return (
     <section className="relative overflow-hidden py-24">
-      <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 flex justify-center">
-        <div
-          className="h-[520px] w-[1100px] animate-breathe opacity-80"
-          style={{
-            background:
-              "conic-gradient(from 200deg at 30% 40%, rgba(15,91,255,0) 0deg, rgba(88,184,255,0.9) 18deg, rgba(47,141,255,0.4) 34deg, rgba(15,91,255,0) 60deg, rgba(15,91,255,0) 300deg)",
-            filter: "blur(28px)",
-          }}
-        />
-      </div>
       <div className="section">
-        <div className="relative mx-auto mb-12 max-w-4xl overflow-hidden rounded-2xl border border-ink-border shadow-glow-sm">
-          <Image
-            src="/figma-assets/dashboard-compare-blur.png"
-            alt="Comparação entre app genérico e app exclusivo Nexora"
-            width={1189}
-            height={603}
-            className="h-auto w-full"
+        <div className="relative mx-auto mb-12 max-w-4xl overflow-visible rounded-2xl border border-ink-border shadow-glow-sm">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/figma-assets/differential-arc-glow.png"
+            alt=""
+            aria-hidden
+            className="pointer-events-none absolute -left-32 -top-40 -z-10 h-[520px] w-[520px] animate-breathe select-none mix-blend-screen"
           />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/figma-assets/differential-arc-glow.png"
+            alt=""
+            aria-hidden
+            className="pointer-events-none absolute -bottom-40 -right-32 -z-10 h-[520px] w-[520px] rotate-180 animate-breathe select-none mix-blend-screen"
+          />
+          <div className="overflow-hidden rounded-2xl">
+            <Image
+              src="/figma-assets/dashboard-compare-blur.png"
+              alt="Comparação entre app genérico e app exclusivo Nexora"
+              width={1189}
+              height={603}
+              className="h-auto w-full"
+            />
+          </div>
         </div>
         <SectionHeading badge="O grande diferencial" title="A diferença entre" highlight="alugar e ter." />
         <div className="mt-10 grid gap-6 lg:grid-cols-2">
