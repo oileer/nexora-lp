@@ -57,7 +57,7 @@ export function PrimaryButton({
   return (
     <a
       href={href}
-      className={`group inline-flex items-center gap-3 rounded-full bg-brand-gradient px-7 py-4 text-sm font-semibold text-white shadow-glow transition hover:brightness-110 ${className}`}
+      className={`group inline-flex items-center gap-3 rounded-full bg-brand-gradient px-7 py-4 text-sm font-semibold uppercase tracking-wide text-white shadow-glow transition hover:brightness-110 ${className}`}
     >
       {children}
       <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white/20 transition group-hover:translate-x-0.5">

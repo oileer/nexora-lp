@@ -220,10 +220,18 @@ export function Segments() {
 }
 
 /* ---------------- DIFERENCIAL (alugar x ter) ---------------- */
-function CompareRow({ text, ok }: { text: string; ok?: boolean }) {
+const CompareIcons = {
+  users: <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" /></svg>,
+  eye: <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7Z" /><circle cx="12" cy="12" r="3" /></svg>,
+  puzzle: <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1" /><path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1" /></svg>,
+  shield: <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z" /></svg>,
+};
+
+function CompareRow({ text, ok, icon }: { text: string; ok?: boolean; icon: keyof typeof CompareIcons }) {
   return (
-    <div className={`flex items-center justify-between rounded-xl border px-4 py-3.5 ${ok ? "border-brand-500/30 bg-brand-500/10" : "border-ink-border bg-ink-800"}`}>
-      <span className={ok ? "text-white" : "text-slate-400"}>{text}</span>
+    <div className={`flex items-center gap-3 rounded-xl border px-4 py-3.5 ${ok ? "border-brand-500/30 bg-brand-500/10" : "border-ink-border bg-ink-800"}`}>
+      <span className={ok ? "text-brand-300" : "text-slate-500"}>{CompareIcons[icon]}</span>
+      <span className={`flex-1 ${ok ? "text-white" : "text-slate-400"}`}>{text}</span>
       {ok ? (
         <span className="flex h-6 w-6 items-center justify-center rounded-full bg-brand-500 text-white">
           <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><path d="M20 6 9 17l-5-5" strokeLinecap="round" strokeLinejoin="round" /></svg>
@@ -263,18 +271,18 @@ export function Differential() {
               </div>
             </div>
             <div className="space-y-3">
-              <CompareRow text="Dividido com concorrentes" />
-              <CompareRow text="A marca é da plataforma" />
-              <CompareRow text="Você segue as regras deles" />
-              <CompareRow text="Some se a plataforma sumir" />
+              <CompareRow icon="users" text="Dividido com concorrentes" />
+              <CompareRow icon="eye" text="A marca é da plataforma" />
+              <CompareRow icon="puzzle" text="Você segue as regras deles" />
+              <CompareRow icon="shield" text="Some se a plataforma sumir" />
             </div>
           </div>
 
           <div className="rounded-2xl border border-brand-500/50 bg-brand-500/5 p-6 shadow-glow-sm">
             <div className="mb-6 flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-gradient text-white">
-                  <svg className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor"><path d="M7 21 L7 8 L12 15 L12 3 L17 3 L17 16 L12 9 L12 21 Z" /></svg>
+                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-gradient text-white shadow-glow-sm">
+                  <LogoMark className="h-6 w-6" />
                 </div>
                 <div>
                   <p className="text-xs uppercase tracking-wide text-brand-300">Ter</p>
@@ -284,10 +292,10 @@ export function Differential() {
               <span className="rounded-full bg-brand-500 px-3 py-1 text-xs font-medium text-white">Recomendado</span>
             </div>
             <div className="space-y-3">
-              <CompareRow ok text="Exclusivo, só seu" />
-              <CompareRow ok text="A marca é 100% sua" />
-              <CompareRow ok text="As regras são suas" />
-              <CompareRow ok text="É seu patrimônio digital" />
+              <CompareRow ok icon="users" text="Exclusivo, só seu" />
+              <CompareRow ok icon="eye" text="A marca é 100% sua" />
+              <CompareRow ok icon="puzzle" text="As regras são suas" />
+              <CompareRow ok icon="shield" text="É seu patrimônio digital" />
             </div>
           </div>
         </div>
@@ -330,7 +338,7 @@ export function HowItWorks() {
           <StepCard n="02" title="Criação personalizada" text="Construímos seu aplicativo do zero, com sua identidade e suas funcionalidades exclusivas, com suporte em toda a etapa."
             icon={<svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="m8 9-3 3 3 3M16 9l3 3-3 3" strokeLinecap="round" strokeLinejoin="round" /></svg>} />
           <StepCard n="03" title="Entrega e publicação" text="Seu app pronto, testado e publicado, com a sua marca na loja de aplicativos."
-            icon={<svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 3v12M8 11l4 4 4-4M5 21h14" strokeLinecap="round" strokeLinejoin="round" /></svg>} />
+            icon={<svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1" strokeLinecap="round" strokeLinejoin="round" /><path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1" strokeLinecap="round" strokeLinejoin="round" /></svg>} />
           <StepCard n="04" title="Acompanhamento contínuo" text="Depois da entrega, seguimos acompanhando o funcionamento enquanto servidores e recorrência estão ativos. Você nunca fica sozinho."
             icon={<svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 12h4l3 8 4-16 3 8h4" strokeLinecap="round" strokeLinejoin="round" /></svg>} />
         </div>
@@ -342,18 +350,18 @@ export function HowItWorks() {
 /* ---------------- CASES ---------------- */
 function CaseCard({ seg, quote, name, biz, metric }: { seg: string; quote: string; name: string; biz: string; metric: string }) {
   return (
-    <div className="flex flex-col rounded-2xl border border-white/15 bg-white/5 p-6 backdrop-blur">
-      <span className="mb-4 w-fit rounded-full bg-white/10 px-3 py-1 text-xs text-white/80">{seg}</span>
-      <p className="flex-1 text-base leading-relaxed text-white/95">{quote}</p>
-      <div className="mt-6 flex items-center justify-between border-t border-white/15 pt-4">
+    <div className="flex flex-col rounded-2xl bg-white p-6 shadow-lg">
+      <span className="mb-4 w-fit rounded-full bg-slate-100 px-3 py-1 text-xs text-slate-500">{seg}</span>
+      <p className="flex-1 text-base leading-relaxed text-ink-900">{quote}</p>
+      <div className="mt-6 flex items-center justify-between border-t border-slate-100 pt-4">
         <div className="flex items-center gap-3">
-          <div className="h-9 w-9 rounded-full bg-white/25" />
+          <div className="h-9 w-9 rounded-full bg-brand-500" />
           <div>
-            <p className="text-sm font-semibold text-white">{name}</p>
-            <p className="text-xs text-white/60">{biz}</p>
+            <p className="text-sm font-semibold text-ink-900">{name}</p>
+            <p className="text-xs text-slate-500">{biz}</p>
           </div>
         </div>
-        <span className="text-sm font-medium text-white">{metric}</span>
+        <span className="text-sm font-medium text-brand-600">{metric}</span>
       </div>
     </div>
   );
