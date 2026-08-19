@@ -299,9 +299,19 @@ function CompareRow({ text, ok, icon }: { text: string; ok?: boolean; icon: keyo
 
 export function Differential() {
   return (
-    <section className="py-24">
+    <section className="relative overflow-hidden py-24">
+      <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 flex justify-center">
+        <div
+          className="h-[520px] w-[1100px] animate-breathe opacity-80"
+          style={{
+            background:
+              "conic-gradient(from 200deg at 30% 40%, rgba(15,91,255,0) 0deg, rgba(88,184,255,0.9) 18deg, rgba(47,141,255,0.4) 34deg, rgba(15,91,255,0) 60deg, rgba(15,91,255,0) 300deg)",
+            filter: "blur(28px)",
+          }}
+        />
+      </div>
       <div className="section">
-        <div className="mx-auto mb-12 max-w-4xl overflow-hidden rounded-2xl border border-ink-border shadow-glow-sm">
+        <div className="relative mx-auto mb-12 max-w-4xl overflow-hidden rounded-2xl border border-ink-border shadow-glow-sm">
           <Image
             src="/figma-assets/dashboard-compare-blur.png"
             alt="Comparação entre app genérico e app exclusivo Nexora"
@@ -491,16 +501,12 @@ function CheckItem({ text, ok }: { text: string; ok: boolean }) {
 export function Audience() {
   return (
     <section className="relative overflow-hidden py-24">
-      <div
-        className="pointer-events-none absolute left-1/2 top-0 h-[420px] w-[820px] -translate-x-1/2 -translate-y-1/2 animate-breathe"
-        style={{
-          background:
-            "radial-gradient(circle at 50% 50%, rgba(79,124,255,0.55) 0%, rgba(79,124,255,0.25) 28%, rgba(79,124,255,0.08) 50%, rgba(5,7,11,0) 70%)",
-        }}
-      />
-      <div
-        className="dot-grid pointer-events-none absolute left-1/2 top-0 h-[420px] w-[820px] -translate-x-1/2 -translate-y-1/2 opacity-60"
-        style={{ maskImage: "radial-gradient(circle at 50% 50%, black 0%, transparent 65%)" }}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/figma-assets/audience-eclipse-glow.png"
+        alt=""
+        aria-hidden
+        className="pointer-events-none absolute left-1/2 top-0 h-[380px] w-[1440px] max-w-none -translate-x-1/2 -translate-y-1/2 animate-breathe select-none"
       />
       <div className="section relative grid items-center gap-12 lg:grid-cols-2">
         <div>
