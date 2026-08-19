@@ -105,7 +105,13 @@ function ProblemCard({ icon, title, text, full = false }: { icon: ReactNode; tit
 
 export function Problem() {
   return (
-    <section id="diferenciais" className="py-24">
+    <section id="diferenciais" className="relative overflow-hidden py-24">
+      <div
+        className="pointer-events-none absolute -left-40 -top-32 -z-10 h-[620px] w-[620px] animate-breathe opacity-70"
+        style={{
+          background: "radial-gradient(circle at 30% 30%, rgba(29,111,242,0.5) 0%, rgba(29,111,242,0.18) 35%, rgba(5,7,11,0) 70%)",
+        }}
+      />
       <div className="section">
         <div className="grid items-start gap-10 lg:grid-cols-2">
           <SectionHeading
