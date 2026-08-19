@@ -45,10 +45,15 @@ export default {
           "0%,100%": { transform: "translateY(0)" },
           "50%": { transform: "translateY(-10px)" },
         },
+        breathe: {
+          "0%,100%": { transform: "scale(1)", opacity: "0.7" },
+          "50%": { transform: "scale(1.08)", opacity: "1" },
+        },
       },
       animation: {
         marquee: "marquee 22s linear infinite",
         floaty: "floaty 6s ease-in-out infinite",
+        breathe: "breathe 10s ease-in-out infinite",
       },
     },
   },

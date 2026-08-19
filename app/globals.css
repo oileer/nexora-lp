@@ -13,6 +13,29 @@ body {
     radial-gradient(50% 40% at 50% 0%, rgba(29, 111, 242, 0.1) 0%, rgba(5, 7, 11, 0) 100%);
 }
 
+/* Grão sutil sobre o fundo escuro, tira o "chapado" de cor sólida */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.035;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .animate-marquee,
+  .animate-floaty,
+  .animate-breathe {
+    animation: none !important;
+  }
+}
+
 /* Fundo pontilhado usado nos blocos com glow */
 .dot-grid {
   background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);

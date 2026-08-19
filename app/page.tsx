@@ -1,5 +1,6 @@
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { ScrollProgressRail } from "@/components/motion";
 import {
   Hero,
   Marquee,
@@ -16,6 +17,7 @@ import {
 export default function Home() {
   return (
     <main className="relative">
+      <ScrollProgressRail />
       <Navbar />
       <Hero />
       <Marquee />

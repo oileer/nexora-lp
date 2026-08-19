@@ -1,35 +1,72 @@
+"use client";
+
 import { ReactNode } from "react";
 import Image from "next/image";
+import { motion, useReducedMotion } from "framer-motion";
 import { Badge, SectionHeading, PrimaryButton, DashboardMock } from "./ui";
 import { LogoMark } from "./Logo";
+import { Reveal, RevealGroup, Spotlight, CountUpMetric, WordReveal } from "./motion";
+
+const EASE_OUT_EXPO = [0.16, 1, 0.3, 1] as const;
 
 /* ---------------- HERO ---------------- */
 export function Hero() {
+  const reduce = useReducedMotion();
   return (
     <section id="aplicativo" className="relative overflow-hidden pt-40 pb-24">
-      <div className="pointer-events-none absolute inset-0 bg-radial-glow" />
+      <motion.div
+        className="pointer-events-none absolute inset-0 bg-radial-glow animate-breathe"
+        initial={reduce ? undefined : { opacity: 0 }}
+        animate={reduce ? undefined : { opacity: 1 }}
+        transition={{ duration: 1.2, ease: EASE_OUT_EXPO }}
+      />
       <div className="section relative text-center">
-        <div className="flex justify-center">
+        <motion.div
+          className="flex justify-center"
+          initial={reduce ? undefined : { opacity: 0, y: 10 }}
+          animate={reduce ? undefined : { opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: EASE_OUT_EXPO }}
+        >
           <Badge>Aplicativos Exclusivos</Badge>
-        </div>
-        <h1 className="mx-auto mt-8 max-w-[720px] text-5xl font-semibold leading-[1.05] tracking-[-0.03em] text-white sm:text-6xl md:text-[60px]">
-          Um aplicativo <span className="text-gradient">feito sob medida para a sua marca.</span>{" "}
+        </motion.div>
+        <motion.h1
+          className="mx-auto mt-8 max-w-[720px] text-5xl font-semibold leading-[1.05] tracking-[-0.03em] text-white sm:text-6xl md:text-[60px]"
+          initial={reduce ? undefined : { opacity: 0, y: 14 }}
+          animate={reduce ? undefined : { opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.15, ease: EASE_OUT_EXPO }}
+        >
+          Um aplicativo <WordReveal className="text-gradient" text="feito sob medida para a sua marca." />{" "}
           Não um template. O seu.
-        </h1>
-        <p className="mx-auto mt-7 max-w-2xl text-base leading-relaxed text-slate-400 sm:text-lg">
+        </motion.h1>
+        <motion.p
+          className="mx-auto mt-7 max-w-2xl text-base leading-relaxed text-slate-400 sm:text-lg"
+          initial={reduce ? undefined : { opacity: 0, y: 10 }}
+          animate={reduce ? undefined : { opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3, ease: EASE_OUT_EXPO }}
+        >
           Enquanto o mercado divide o mesmo app genérico entre centenas de negócios, a
           Nexora cria aplicativos exclusivos, com a sua marca, as suas regras e
           funcionalidades que só você tem. Mais autoridade, mais recorrência, mais controle.
-        </p>
-        <div className="mt-10 flex justify-center">
+        </motion.p>
+        <motion.div
+          className="mt-10 flex justify-center"
+          initial={reduce ? undefined : { opacity: 0, y: 10 }}
+          animate={reduce ? undefined : { opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4, ease: EASE_OUT_EXPO }}
+        >
           <PrimaryButton>Quero meu aplicativo exclusivo</PrimaryButton>
-        </div>
-        <div className="relative mx-auto mt-20 max-w-4xl">
-          <div className="absolute -inset-x-10 -top-10 bottom-0 bg-radial-glow blur-2xl" />
+        </motion.div>
+        <motion.div
+          className="relative mx-auto mt-20 max-w-4xl"
+          initial={reduce ? undefined : { opacity: 0, y: 24, scale: 0.98 }}
+          animate={reduce ? undefined : { opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 0.8, delay: 0.5, ease: EASE_OUT_EXPO }}
+        >
+          <div className="absolute -inset-x-10 -top-10 bottom-0 bg-radial-glow blur-2xl animate-breathe" />
           <div className="relative animate-floaty">
             <DashboardMock />
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
@@ -98,32 +135,42 @@ export function Problem() {
             </div>
 
             <div className="grid gap-5 sm:grid-cols-2">
-              <ProblemCard
-                title="App clonado"
-                text="Um app genérico que dezenas de negócios usam igual ao seu."
-                icon={<svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="9" y="9" width="12" height="12" rx="2" /><path d="M5 15V5a2 2 0 0 1 2-2h10" /></svg>}
-              />
-              <ProblemCard
-                title="Marca escondida"
-                text="Sua identidade fica dentro da marca de outra empresa."
-                icon={<svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7-10-7-10-7Z" /><path d="m4 4 16 16" strokeLinecap="round" /></svg>}
-              />
-              <ProblemCard
-                title="Zero exclusividade"
-                text="Nenhuma funcionalidade que seja só sua."
-                icon={<svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="5" y="11" width="14" height="10" rx="2" /><path d="M8 11V7a4 4 0 0 1 8 0v4" /></svg>}
-              />
-              <ProblemCard
-                title="Sem recorrência"
-                text="Cliente sem motivo pra voltar sempre ao seu app."
-                icon={<svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M17 2l4 4-4 4" /><path d="M3 11V9a4 4 0 0 1 4-4h14M7 22l-4-4 4-4" /><path d="M21 13v2a4 4 0 0 1-4 4H3" /></svg>}
-              />
-              <ProblemCard
-                full
-                title="Refém da plataforma"
-                text="Preso às regras e limitações de terceiros."
-                icon={<svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1" /><path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1" /></svg>}
-              />
+              <Reveal delay={0}>
+                <ProblemCard
+                  title="App clonado"
+                  text="Um app genérico que dezenas de negócios usam igual ao seu."
+                  icon={<svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="9" y="9" width="12" height="12" rx="2" /><path d="M5 15V5a2 2 0 0 1 2-2h10" /></svg>}
+                />
+              </Reveal>
+              <Reveal delay={0.08}>
+                <ProblemCard
+                  title="Marca escondida"
+                  text="Sua identidade fica dentro da marca de outra empresa."
+                  icon={<svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7-10-7-10-7Z" /><path d="m4 4 16 16" strokeLinecap="round" /></svg>}
+                />
+              </Reveal>
+              <Reveal delay={0.16}>
+                <ProblemCard
+                  title="Zero exclusividade"
+                  text="Nenhuma funcionalidade que seja só sua."
+                  icon={<svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="5" y="11" width="14" height="10" rx="2" /><path d="M8 11V7a4 4 0 0 1 8 0v4" /></svg>}
+                />
+              </Reveal>
+              <Reveal delay={0.24}>
+                <ProblemCard
+                  title="Sem recorrência"
+                  text="Cliente sem motivo pra voltar sempre ao seu app."
+                  icon={<svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M17 2l4 4-4 4" /><path d="M3 11V9a4 4 0 0 1 4-4h14M7 22l-4-4 4-4" /><path d="M21 13v2a4 4 0 0 1-4 4H3" /></svg>}
+                />
+              </Reveal>
+              <Reveal delay={0.32} className="sm:col-span-2">
+                <ProblemCard
+                  full
+                  title="Refém da plataforma"
+                  text="Preso às regras e limitações de terceiros."
+                  icon={<svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1" /><path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1" /></svg>}
+                />
+              </Reveal>
             </div>
           </div>
 
@@ -160,7 +207,7 @@ export function Problem() {
 /* ---------------- SEGMENTOS ---------------- */
 function SegmentCard({ icon, title, text, tags, image, cta }: { icon: ReactNode; title: string; text: string; tags: string; image: string; cta: string }) {
   return (
-    <div className="group rounded-2xl border border-ink-border bg-ink-card p-6 transition hover:border-brand-500/50">
+    <Spotlight className="group rounded-2xl border border-ink-border bg-ink-card p-6 transition hover:border-brand-500/50">
       <div className="mb-5 overflow-hidden rounded-xl shadow-glow-sm">
         <Image src={image} alt={title} width={430} height={210} className="h-auto w-full" />
       </div>
@@ -173,7 +220,7 @@ function SegmentCard({ icon, title, text, tags, image, cta }: { icon: ReactNode;
       <a href="#contato" className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-brand-400 transition hover:text-brand-300">
         {cta} <span aria-hidden>→</span>
       </a>
-    </div>
+    </Spotlight>
   );
 }
 
@@ -188,32 +235,37 @@ export function Segments() {
           after="para o seu segmento."
           subtitle="O modelo Nexora se adapta a qualquer negócio de serviço recorrente. Escolha o seu e veja a solução pensada pra ele."
         />
-        <div className="mt-14 grid gap-6 md:grid-cols-3">
-          <SegmentCard
-            title="Saúde & Bem-estar"
-            text="App próprio pra agendamento, recorrência e relacionamento com o paciente."
-            tags="Clínicas · consultórios · terapias"
-            cta="Ver solução para Saúde"
-            image="/figma-assets/segment-saude.png"
-            icon={<svg className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7-4.35-9.5-8.5C.9 9.5 2.5 6 6 6c2 0 3.2 1.2 4 2.3C10.8 7.2 12 6 14 6c3.5 0 5.1 3.5 3.5 6.5C19 16.65 12 21 12 21z" /></svg>}
-          />
-          <SegmentCard
-            title="Beleza & Estética"
-            text="App exclusivo com a sua marca pra fidelizar e elevar a percepção do seu serviço."
-            tags="Barbearias · salões · estúdios"
-            cta="Ver solução para Beleza"
-            image="/figma-assets/segment-beleza.png"
-            icon={<svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="6" cy="6" r="3" /><circle cx="6" cy="18" r="3" /><path d="M20 4 8.12 15.88M14.47 14.48 20 20M8.12 8.12 12 12" /></svg>}
-          />
-          <SegmentCard
-            title="Fitness & Performance"
-            text="App sob medida pra agenda, planos e engajamento dos seus alunos."
-            tags="Estúdios · personal · boxes"
-            cta="Ver solução para Fitness"
-            image="/figma-assets/segment-fitness.png"
-            icon={<svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M6.5 6.5 17.5 17.5M4 8l4-4M20 16l-4 4M3 15l6-6M15 3l6 6" strokeLinecap="round" /></svg>}
-          />
-        </div>
+        <RevealGroup className="mt-14 grid gap-6 md:grid-cols-3">
+          {[
+            <SegmentCard
+              key="saude"
+              title="Saúde & Bem-estar"
+              text="App próprio pra agendamento, recorrência e relacionamento com o paciente."
+              tags="Clínicas · consultórios · terapias"
+              cta="Ver solução para Saúde"
+              image="/figma-assets/segment-saude.png"
+              icon={<svg className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7-4.35-9.5-8.5C.9 9.5 2.5 6 6 6c2 0 3.2 1.2 4 2.3C10.8 7.2 12 6 14 6c3.5 0 5.1 3.5 3.5 6.5C19 16.65 12 21 12 21z" /></svg>}
+            />,
+            <SegmentCard
+              key="beleza"
+              title="Beleza & Estética"
+              text="App exclusivo com a sua marca pra fidelizar e elevar a percepção do seu serviço."
+              tags="Barbearias · salões · estúdios"
+              cta="Ver solução para Beleza"
+              image="/figma-assets/segment-beleza.png"
+              icon={<svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="6" cy="6" r="3" /><circle cx="6" cy="18" r="3" /><path d="M20 4 8.12 15.88M14.47 14.48 20 20M8.12 8.12 12 12" /></svg>}
+            />,
+            <SegmentCard
+              key="fitness"
+              title="Fitness & Performance"
+              text="App sob medida pra agenda, planos e engajamento dos seus alunos."
+              tags="Estúdios · personal · boxes"
+              cta="Ver solução para Fitness"
+              image="/figma-assets/segment-fitness.png"
+              icon={<svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M6.5 6.5 17.5 17.5M4 8l4-4M20 16l-4 4M3 15l6-6M15 3l6 6" strokeLinecap="round" /></svg>}
+            />,
+          ]}
+        </RevealGroup>
       </div>
     </section>
   );
@@ -270,12 +322,14 @@ export function Differential() {
                 <p className="text-lg font-semibold text-white">App genérico</p>
               </div>
             </div>
-            <div className="space-y-3">
-              <CompareRow icon="users" text="Dividido com concorrentes" />
-              <CompareRow icon="eye" text="A marca é da plataforma" />
-              <CompareRow icon="puzzle" text="Você segue as regras deles" />
-              <CompareRow icon="shield" text="Some se a plataforma sumir" />
-            </div>
+            <RevealGroup className="space-y-3">
+              {[
+                <CompareRow key="1" icon="users" text="Dividido com concorrentes" />,
+                <CompareRow key="2" icon="eye" text="A marca é da plataforma" />,
+                <CompareRow key="3" icon="puzzle" text="Você segue as regras deles" />,
+                <CompareRow key="4" icon="shield" text="Some se a plataforma sumir" />,
+              ]}
+            </RevealGroup>
           </div>
 
           <div className="rounded-2xl border border-brand-500/50 bg-brand-500/5 p-6 shadow-glow-sm">
@@ -291,12 +345,14 @@ export function Differential() {
               </div>
               <span className="rounded-full bg-brand-500 px-3 py-1 text-xs font-medium text-white">Recomendado</span>
             </div>
-            <div className="space-y-3">
-              <CompareRow ok icon="users" text="Exclusivo, só seu" />
-              <CompareRow ok icon="eye" text="A marca é 100% sua" />
-              <CompareRow ok icon="puzzle" text="As regras são suas" />
-              <CompareRow ok icon="shield" text="É seu patrimônio digital" />
-            </div>
+            <RevealGroup className="space-y-3">
+              {[
+                <CompareRow key="1" ok icon="users" text="Exclusivo, só seu" />,
+                <CompareRow key="2" ok icon="eye" text="A marca é 100% sua" />,
+                <CompareRow key="3" ok icon="puzzle" text="As regras são suas" />,
+                <CompareRow key="4" ok icon="shield" text="É seu patrimônio digital" />,
+              ]}
+            </RevealGroup>
           </div>
         </div>
       </div>
@@ -332,16 +388,18 @@ export function HowItWorks() {
             Da ideia ao app na <span className="text-gradient">mão dos seus clientes:</span>
           </h2>
         </div>
-        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          <StepCard n="01" title="Entendimento" text="A gente mergulha na sua marca e no seu negócio pra desenhar o app do jeito que faz sentido pra você."
-            icon={<svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="11" cy="11" r="7" /><path d="m21 21-4.3-4.3" strokeLinecap="round" /></svg>} />
-          <StepCard n="02" title="Criação personalizada" text="Construímos seu aplicativo do zero, com sua identidade e suas funcionalidades exclusivas, com suporte em toda a etapa."
-            icon={<svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="m8 9-3 3 3 3M16 9l3 3-3 3" strokeLinecap="round" strokeLinejoin="round" /></svg>} />
-          <StepCard n="03" title="Entrega e publicação" text="Seu app pronto, testado e publicado, com a sua marca na loja de aplicativos."
-            icon={<svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1" strokeLinecap="round" strokeLinejoin="round" /><path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1" strokeLinecap="round" strokeLinejoin="round" /></svg>} />
-          <StepCard n="04" title="Acompanhamento contínuo" text="Depois da entrega, seguimos acompanhando o funcionamento enquanto servidores e recorrência estão ativos. Você nunca fica sozinho."
-            icon={<svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 12h4l3 8 4-16 3 8h4" strokeLinecap="round" strokeLinejoin="round" /></svg>} />
-        </div>
+        <RevealGroup className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {[
+            <StepCard key="1" n="01" title="Entendimento" text="A gente mergulha na sua marca e no seu negócio pra desenhar o app do jeito que faz sentido pra você."
+              icon={<svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="11" cy="11" r="7" /><path d="m21 21-4.3-4.3" strokeLinecap="round" /></svg>} />,
+            <StepCard key="2" n="02" title="Criação personalizada" text="Construímos seu aplicativo do zero, com sua identidade e suas funcionalidades exclusivas, com suporte em toda a etapa."
+              icon={<svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="m8 9-3 3 3 3M16 9l3 3-3 3" strokeLinecap="round" strokeLinejoin="round" /></svg>} />,
+            <StepCard key="3" n="03" title="Entrega e publicação" text="Seu app pronto, testado e publicado, com a sua marca na loja de aplicativos."
+              icon={<svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1" strokeLinecap="round" strokeLinejoin="round" /><path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1" strokeLinecap="round" strokeLinejoin="round" /></svg>} />,
+            <StepCard key="4" n="04" title="Acompanhamento contínuo" text="Depois da entrega, seguimos acompanhando o funcionamento enquanto servidores e recorrência estão ativos. Você nunca fica sozinho."
+              icon={<svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 12h4l3 8 4-16 3 8h4" strokeLinecap="round" strokeLinejoin="round" /></svg>} />,
+          ]}
+        </RevealGroup>
       </div>
     </section>
   );
@@ -350,7 +408,7 @@ export function HowItWorks() {
 /* ---------------- CASES ---------------- */
 function CaseCard({ seg, quote, name, biz, metric }: { seg: string; quote: string; name: string; biz: string; metric: string }) {
   return (
-    <div className="flex flex-col rounded-2xl bg-white p-6 shadow-lg">
+    <Spotlight className="flex flex-col rounded-2xl bg-white p-6 shadow-lg">
       <span className="mb-4 w-fit rounded-full bg-slate-100 px-3 py-1 text-xs text-slate-500">{seg}</span>
       <p className="flex-1 text-base leading-relaxed text-ink-900">{quote}</p>
       <div className="mt-6 flex items-center justify-between border-t border-slate-100 pt-4">
@@ -361,9 +419,9 @@ function CaseCard({ seg, quote, name, biz, metric }: { seg: string; quote: strin
             <p className="text-xs text-slate-500">{biz}</p>
           </div>
         </div>
-        <span className="text-sm font-medium text-brand-600">{metric}</span>
+        <CountUpMetric text={metric} className="text-sm font-medium text-brand-600" />
       </div>
-    </div>
+    </Spotlight>
   );
 }
 
@@ -380,11 +438,13 @@ export function Cases() {
               Negócios que <span className="text-white/70">já saíram do genérico:</span>
             </h2>
           </div>
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
-            <CaseCard seg="Saúde & Bem-estar" quote="“Nossos pacientes reservam sozinhos e voltam mais. O app com a nossa cara mudou a percepção da clínica.”" name="Dra. Marina Alves" biz="Clínica Vitalis" metric="+42% de recorrência" />
-            <CaseCard seg="Beleza & Estética" quote="“Deixei de dividir espaço com concorrente. Agora meu salão tem app próprio na App Store.”" name="Rafael Nunes" biz="Studio Lumière" metric="4.9 ★ de avaliação" />
-            <CaseCard seg="Fitness & Performance" quote="“Os alunos acompanham planos e agendamentos em um app só nosso. O engajamento disparou.”" name="Camila Torres" biz="Box Iron Fit" metric="+61% de engajamento" />
-          </div>
+          <RevealGroup className="mt-12 grid gap-6 md:grid-cols-3">
+            {[
+              <CaseCard key="1" seg="Saúde & Bem-estar" quote="“Nossos pacientes reservam sozinhos e voltam mais. O app com a nossa cara mudou a percepção da clínica.”" name="Dra. Marina Alves" biz="Clínica Vitalis" metric="+42% de recorrência" />,
+              <CaseCard key="2" seg="Beleza & Estética" quote="“Deixei de dividir espaço com concorrente. Agora meu salão tem app próprio na App Store.”" name="Rafael Nunes" biz="Studio Lumière" metric="4.9 ★ de avaliação" />,
+              <CaseCard key="3" seg="Fitness & Performance" quote="“Os alunos acompanham planos e agendamentos em um app só nosso. O engajamento disparou.”" name="Camila Torres" biz="Box Iron Fit" metric="+61% de engajamento" />,
+            ]}
+          </RevealGroup>
         </div>
       </div>
     </section>
@@ -439,26 +499,28 @@ export function Audience() {
             percepção, a experiência e o valor.
           </p>
         </div>
-        <div className="space-y-6">
-          <div className="rounded-2xl border border-brand-500/40 bg-brand-500/5 p-6">
-            <p className="mb-4 text-xs uppercase tracking-[0.15em] text-brand-300">É pra você se...</p>
-            <ul className="space-y-3.5 text-sm">
-              <CheckItem ok text="Seu negócio já é uma marca consolidada" />
-              <CheckItem ok text="Você tem faturamento consistente e quer escalar" />
-              <CheckItem ok text="Busca exclusividade e um posicionamento premium" />
-              <CheckItem ok text="Entende que autoridade se constrói nos detalhes" />
-            </ul>
-          </div>
-          <div className="rounded-2xl border border-ink-border bg-ink-card p-6">
-            <p className="mb-4 text-xs uppercase tracking-[0.15em] text-slate-500">Não é pra você se...</p>
-            <ul className="space-y-3.5 text-sm">
-              <CheckItem ok={false} text="Seu faturamento ainda é inconsistente" />
-              <CheckItem ok={false} text="Procura a solução mais barata do mercado" />
-              <CheckItem ok={false} text="Se contenta com o app genérico que todo mundo usa" />
-              <CheckItem ok={false} text="Não busca exclusividade nem posicionamento" />
-            </ul>
-          </div>
-        </div>
+        <RevealGroup className="space-y-6">
+          {[
+            <div key="sim" className="rounded-2xl border border-brand-500/40 bg-brand-500/5 p-6">
+              <p className="mb-4 text-xs uppercase tracking-[0.15em] text-brand-300">É pra você se...</p>
+              <ul className="space-y-3.5 text-sm">
+                <CheckItem ok text="Seu negócio já é uma marca consolidada" />
+                <CheckItem ok text="Você tem faturamento consistente e quer escalar" />
+                <CheckItem ok text="Busca exclusividade e um posicionamento premium" />
+                <CheckItem ok text="Entende que autoridade se constrói nos detalhes" />
+              </ul>
+            </div>,
+            <div key="nao" className="rounded-2xl border border-ink-border bg-ink-card p-6">
+              <p className="mb-4 text-xs uppercase tracking-[0.15em] text-slate-500">Não é pra você se...</p>
+              <ul className="space-y-3.5 text-sm">
+                <CheckItem ok={false} text="Seu faturamento ainda é inconsistente" />
+                <CheckItem ok={false} text="Procura a solução mais barata do mercado" />
+                <CheckItem ok={false} text="Se contenta com o app genérico que todo mundo usa" />
+                <CheckItem ok={false} text="Não busca exclusividade nem posicionamento" />
+              </ul>
+            </div>,
+          ]}
+        </RevealGroup>
       </div>
     </section>
   );
@@ -472,9 +534,9 @@ export function ContactCTA() {
     <section id="contato" className="py-24">
       <div className="section">
         <div className="relative overflow-hidden rounded-3xl border border-brand-500/30 bg-gradient-to-br from-brand-600/25 via-ink-800 to-ink-900 p-8 sm:p-12">
-          <div className="dot-grid pointer-events-none absolute inset-0 opacity-40" />
+          <div className="dot-grid pointer-events-none absolute inset-0 opacity-40 animate-breathe" />
           <div className="relative grid gap-12 lg:grid-cols-2">
-            <div>
+            <Reveal delay={0}>
               <span className="inline-flex items-center gap-2 rounded-full border border-brand-500/40 bg-brand-500/10 px-4 py-1.5 text-xs font-medium uppercase tracking-[0.15em] text-brand-300">
                 <span className="h-2 w-2 rotate-45 bg-brand-400" /> Vagas limitadas
               </span>
@@ -486,8 +548,9 @@ export function ContactCTA() {
                 exclusividade e qualidade em cada aplicativo. Preencha o formulário e nossa
                 equipe vai avaliar o seu projeto.
               </p>
-            </div>
+            </Reveal>
 
+            <Reveal delay={0.1}>
             <form className="rounded-2xl border border-ink-border bg-ink-card/80 p-6 backdrop-blur">
               <p className="mb-4 text-sm text-slate-300">Conte pra gente sobre o seu negócio:</p>
               <div className="space-y-3">
@@ -511,6 +574,7 @@ export function ContactCTA() {
                 </p>
               </div>
             </form>
+            </Reveal>
           </div>
         </div>
       </div>

@@ -1,5 +1,8 @@
-import { ReactNode } from "react";
+"use client";
+
+import { ReactNode, useRef } from "react";
 import Image from "next/image";
+import { motion, useMotionValue, useReducedMotion, useSpring } from "framer-motion";
 
 export function Badge({ children }: { children: ReactNode }) {
   return (
@@ -54,9 +57,31 @@ export function PrimaryButton({
   href?: string;
   className?: string;
 }) {
+  const ref = useRef<HTMLAnchorElement>(null);
+  const reduce = useReducedMotion();
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  const springX = useSpring(x, { stiffness: 300, damping: 20, mass: 0.5 });
+  const springY = useSpring(y, { stiffness: 300, damping: 20, mass: 0.5 });
+
+  function handleMouseMove(e: React.MouseEvent<HTMLAnchorElement>) {
+    if (reduce || !ref.current) return;
+    const rect = ref.current.getBoundingClientRect();
+    x.set((e.clientX - rect.left - rect.width / 2) * 0.3);
+    y.set((e.clientY - rect.top - rect.height / 2) * 0.3);
+  }
+  function handleMouseLeave() {
+    x.set(0);
+    y.set(0);
+  }
+
   return (
-    <a
+    <motion.a
+      ref={ref}
       href={href}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      style={reduce ? undefined : { x: springX, y: springY }}
       className={`group inline-flex items-center gap-3 rounded-full bg-brand-gradient px-7 py-4 text-sm font-semibold uppercase tracking-wide text-white shadow-glow transition hover:brightness-110 ${className}`}
     >
       {children}
@@ -65,7 +90,7 @@ export function PrimaryButton({
           <path d="M5 12h14M13 6l6 6-6 6" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       </span>
-    </a>
+    </motion.a>
   );
 }
 

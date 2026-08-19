@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import { Logo } from "./Logo";
 
 const links = [
@@ -9,9 +12,28 @@ const links = [
 ];
 
 export function Navbar() {
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    function onScroll() {
+      setScrolled(window.scrollY > 80);
+    }
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
-    <header className="fixed inset-x-0 top-4 z-50 flex justify-center px-4">
-      <nav className="flex w-full max-w-5xl items-center justify-between rounded-full border border-ink-border bg-ink-800/80 px-4 py-2.5 backdrop-blur-md sm:px-6">
+    <header
+      className={`fixed inset-x-0 z-50 flex justify-center px-4 transition-[top] duration-300 ${
+        scrolled ? "top-2" : "top-4"
+      }`}
+    >
+      <nav
+        className={`flex w-full max-w-5xl items-center justify-between rounded-full border border-ink-border bg-ink-800/80 backdrop-blur-md transition-all duration-300 ${
+          scrolled ? "px-4 py-1.5 shadow-glow-sm sm:px-5" : "px-4 py-2.5 sm:px-6"
+        }`}
+      >
         <Logo />
 
         <ul className="hidden items-center gap-1 md:flex">
