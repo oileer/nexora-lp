@@ -55,9 +55,9 @@ export function Marquee() {
 }
 
 /* ---------------- PROBLEMA ---------------- */
-function ProblemCard({ icon, title, text }: { icon: ReactNode; title: string; text: string }) {
+function ProblemCard({ icon, title, text, full = false }: { icon: ReactNode; title: string; text: string; full?: boolean }) {
   return (
-    <div className="rounded-2xl border border-ink-border bg-ink-card p-6">
+    <div className={`rounded-2xl border border-ink-border bg-ink-card p-6 ${full ? "sm:col-span-2" : ""}`}>
       <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl border border-ink-border bg-ink-800 text-slate-300">
         {icon}
       </div>
@@ -86,29 +86,72 @@ export function Problem() {
           </p>
         </div>
 
-        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          <ProblemCard
-            title="Zero exclusividade"
-            text="Nenhuma funcionalidade que seja só sua."
-            icon={<svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="5" y="11" width="14" height="10" rx="2" /><path d="M8 11V7a4 4 0 0 1 8 0v4" /></svg>}
-          />
-          <ProblemCard
-            title="Sem recorrência"
-            text="Cliente sem motivo pra voltar sempre ao seu app."
-            icon={<svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M17 2l4 4-4 4" /><path d="M3 11V9a4 4 0 0 1 4-4h14M7 22l-4-4 4-4" /><path d="M21 13v2a4 4 0 0 1-4 4H3" /></svg>}
-          />
-          <ProblemCard
-            title="Refém da plataforma"
-            text="Preso às regras e limitações de terceiros."
-            icon={<svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1" /><path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1" /></svg>}
-          />
-        </div>
+        <div className="mt-12 grid gap-6 lg:grid-cols-2">
+          <div>
+            <div className="mb-5 flex items-start gap-3 rounded-2xl border border-red-500/30 bg-red-950/20 p-5">
+              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-red-500/15 text-red-400">
+                <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7-10-7-10-7Z" /><path d="m4 4 16 16" strokeLinecap="round" /></svg>
+              </span>
+              <p className="text-sm leading-relaxed text-slate-300">
+                Isso não passa autoridade. Passa a mensagem de que você é <span className="text-white">mais um</span>.
+                E no seu nível de mercado, ser mais um <span className="text-white">custa caro</span>.
+              </p>
+            </div>
 
-        <div className="mt-6 rounded-2xl border border-brand-500/40 bg-brand-500/10 p-6 text-center">
-          <p className="text-lg font-medium text-white">
-            No topo do mercado, exclusividade não é luxo.{" "}
-            <span className="text-gradient font-semibold">É posicionamento.</span>
-          </p>
+            <div className="grid gap-5 sm:grid-cols-2">
+              <ProblemCard
+                title="App clonado"
+                text="Um app genérico que dezenas de negócios usam igual ao seu."
+                icon={<svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="9" y="9" width="12" height="12" rx="2" /><path d="M5 15V5a2 2 0 0 1 2-2h10" /></svg>}
+              />
+              <ProblemCard
+                title="Marca escondida"
+                text="Sua identidade fica dentro da marca de outra empresa."
+                icon={<svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7-10-7-10-7Z" /><path d="m4 4 16 16" strokeLinecap="round" /></svg>}
+              />
+              <ProblemCard
+                title="Zero exclusividade"
+                text="Nenhuma funcionalidade que seja só sua."
+                icon={<svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="5" y="11" width="14" height="10" rx="2" /><path d="M8 11V7a4 4 0 0 1 8 0v4" /></svg>}
+              />
+              <ProblemCard
+                title="Sem recorrência"
+                text="Cliente sem motivo pra voltar sempre ao seu app."
+                icon={<svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M17 2l4 4-4 4" /><path d="M3 11V9a4 4 0 0 1 4-4h14M7 22l-4-4 4-4" /><path d="M21 13v2a4 4 0 0 1-4 4H3" /></svg>}
+              />
+              <ProblemCard
+                full
+                title="Refém da plataforma"
+                text="Preso às regras e limitações de terceiros."
+                icon={<svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1" /><path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1" /></svg>}
+              />
+            </div>
+          </div>
+
+          <div>
+            <div className="mb-5 flex items-center justify-between rounded-t-2xl border border-ink-border bg-ink-card px-5 py-3">
+              <span className="flex items-center gap-2 text-xs font-medium uppercase tracking-wide text-slate-500">
+                <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="8" y="8" width="12" height="12" rx="2" /><path d="M4 16V6a2 2 0 0 1 2-2h10" /></svg>
+                Todos usam o mesmo
+              </span>
+              <span className="rounded-full bg-red-500/15 px-2.5 py-1 text-[10px] font-semibold text-red-400">CTRL+C · CTRL+V</span>
+            </div>
+            <div className="overflow-hidden rounded-2xl border border-ink-border">
+              <Image
+                src="/figma-assets/chat-generic-mockup.png"
+                alt="Todos os negócios usam o mesmo aplicativo genérico"
+                width={587}
+                height={340}
+                className="h-auto w-full"
+              />
+            </div>
+            <div className="mt-5 rounded-2xl border border-brand-500/40 bg-brand-500/10 p-6">
+              <p className="text-lg font-medium text-white">
+                No topo do mercado, exclusividade não é luxo.{" "}
+                <span className="text-gradient font-semibold">É posicionamento.</span>
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -140,6 +183,7 @@ export function Segments() {
           badge="Segmentos de atuação"
           title="Uma"
           highlight="solução, feita sob medida"
+          after="para o seu segmento."
           subtitle="O modelo Nexora se adapta a qualquer negócio de serviço recorrente. Escolha o seu e veja a solução pensada pra ele."
         />
         <div className="mt-14 grid gap-6 md:grid-cols-3">
@@ -192,8 +236,7 @@ export function Differential() {
   return (
     <section className="py-24">
       <div className="section">
-        <SectionHeading badge="O grande diferencial" title="A diferença entre" highlight="alugar e ter." />
-        <div className="mx-auto mt-12 max-w-4xl overflow-hidden rounded-2xl border border-ink-border shadow-glow-sm">
+        <div className="mx-auto mb-12 max-w-4xl overflow-hidden rounded-2xl border border-ink-border shadow-glow-sm">
           <Image
             src="/figma-assets/dashboard-compare-blur.png"
             alt="Comparação entre app genérico e app exclusivo Nexora"
@@ -202,6 +245,7 @@ export function Differential() {
             className="h-auto w-full"
           />
         </div>
+        <SectionHeading badge="O grande diferencial" title="A diferença entre" highlight="alugar e ter." />
         <div className="mt-10 grid gap-6 lg:grid-cols-2">
           <div className="rounded-2xl border border-ink-border bg-ink-card p-6">
             <div className="mb-6 flex items-center gap-3">
@@ -216,6 +260,7 @@ export function Differential() {
             <div className="space-y-3">
               <CompareRow text="Dividido com concorrentes" />
               <CompareRow text="A marca é da plataforma" />
+              <CompareRow text="Você segue as regras deles" />
               <CompareRow text="Some se a plataforma sumir" />
             </div>
           </div>
@@ -236,6 +281,7 @@ export function Differential() {
             <div className="space-y-3">
               <CompareRow ok text="Exclusivo, só seu" />
               <CompareRow ok text="A marca é 100% sua" />
+              <CompareRow ok text="As regras são suas" />
               <CompareRow ok text="É seu patrimônio digital" />
             </div>
           </div>
@@ -245,33 +291,42 @@ export function Differential() {
   );
 }
 
-/* ---------------- COMO FUNCIONA ---------------- */
+/* ---------------- COMO FUNCIONA (secao clara) ---------------- */
 function StepCard({ n, title, text, icon }: { n: string; title: string; text: string; icon: ReactNode }) {
   return (
-    <div className="relative rounded-2xl border border-ink-border bg-ink-card p-6">
+    <div className="relative rounded-2xl border border-slate-200 bg-slate-50 p-6">
       <div className="mb-6 flex items-center justify-between">
         <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-gradient text-white">{icon}</div>
-        <span className="text-4xl font-bold text-white/5">{n}</span>
+        <span className="text-4xl font-bold text-slate-900/10">{n}</span>
       </div>
-      <h3 className="font-semibold text-white">{title}</h3>
-      <p className="mt-1.5 text-sm leading-relaxed text-slate-400">{text}</p>
+      <h3 className="font-semibold text-ink-900">{title}</h3>
+      <p className="mt-1.5 text-sm leading-relaxed text-slate-500">{text}</p>
     </div>
   );
 }
 
 export function HowItWorks() {
   return (
-    <section className="py-24">
+    <section className="bg-white py-24">
       <div className="section">
-        <SectionHeading badge="Como funciona" title="Da ideia ao app na" highlight="mão dos seus clientes:" />
+        <div className="mx-auto max-w-3xl text-center">
+          <div className="flex justify-center">
+            <span className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-4 py-1.5 text-xs font-medium uppercase tracking-[0.15em] text-slate-500">
+              <span className="h-2 w-2 rotate-45 bg-brand-400" /> Como funciona
+            </span>
+          </div>
+          <h2 className="mt-6 text-4xl font-semibold leading-tight tracking-[-0.02em] text-ink-900 sm:text-5xl">
+            Da ideia ao app na <span className="text-gradient">mão dos seus clientes:</span>
+          </h2>
+        </div>
         <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          <StepCard n="01" title="Entendimento" text="Mergulhamos no seu negócio pra desenhar o app do jeito que faz sentido pra você."
+          <StepCard n="01" title="Entendimento" text="A gente mergulha na sua marca e no seu negócio pra desenhar o app do jeito que faz sentido pra você."
             icon={<svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="11" cy="11" r="7" /><path d="m21 21-4.3-4.3" strokeLinecap="round" /></svg>} />
-          <StepCard n="02" title="Criação personalizada" text="Desenvolvemos do zero, com sua identidade e suas funcionalidades exclusivas, com suporte em toda etapa."
+          <StepCard n="02" title="Criação personalizada" text="Construímos seu aplicativo do zero, com sua identidade e suas funcionalidades exclusivas, com suporte em toda a etapa."
             icon={<svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="m8 9-3 3 3 3M16 9l3 3-3 3" strokeLinecap="round" strokeLinejoin="round" /></svg>} />
-          <StepCard n="03" title="Entrega e publicação" text="Seu app publicado, com a sua marca na loja de aplicativos."
+          <StepCard n="03" title="Entrega e publicação" text="Seu app pronto, testado e publicado, com a sua marca na loja de aplicativos."
             icon={<svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 3v12M8 11l4 4 4-4M5 21h14" strokeLinecap="round" strokeLinejoin="round" /></svg>} />
-          <StepCard n="04" title="Acompanhamento" text="Depois da entrega, seguimos acompanhando o funcionamento. Você nunca fica sozinho."
+          <StepCard n="04" title="Acompanhamento contínuo" text="Depois da entrega, seguimos acompanhando o funcionamento enquanto servidores e recorrência estão ativos. Você nunca fica sozinho."
             icon={<svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 12h4l3 8 4-16 3 8h4" strokeLinecap="round" strokeLinejoin="round" /></svg>} />
         </div>
       </div>
@@ -313,9 +368,9 @@ export function Cases() {
             </h2>
           </div>
           <div className="mt-12 grid gap-6 md:grid-cols-3">
-            <CaseCard seg="Saúde & Bem-estar" quote="“Nossos pacientes reservam sozinhos e voltam sempre. O app com a nossa cara mudou tudo.”" name="Dra. Marina Alves" biz="Clínica Vitalis" metric="+42% de recorrência" />
-            <CaseCard seg="Beleza & Estética" quote="“Deixei de dividir espaço com concorrente. Agora a experiência é 100% da minha marca.”" name="Rafael Nunes" biz="Studio Lumière" metric="4.9 ★ de avaliação" />
-            <CaseCard seg="Fitness & Performance" quote="“Os alunos acompanham planos e agenda no meu próprio app. Engajamento disparou.”" name="Camila Torres" biz="Box Iron Fit" metric="+61% de engajamento" />
+            <CaseCard seg="Saúde & Bem-estar" quote="“Nossos pacientes reservam sozinhos e voltam mais. O app com a nossa cara mudou a percepção da clínica.”" name="Dra. Marina Alves" biz="Clínica Vitalis" metric="+42% de recorrência" />
+            <CaseCard seg="Beleza & Estética" quote="“Deixei de dividir espaço com concorrente. Agora meu salão tem app próprio na App Store.”" name="Rafael Nunes" biz="Studio Lumière" metric="4.9 ★ de avaliação" />
+            <CaseCard seg="Fitness & Performance" quote="“Os alunos acompanham planos e agendamentos em um app só nosso. O engajamento disparou.”" name="Camila Torres" biz="Box Iron Fit" metric="+61% de engajamento" />
           </div>
         </div>
       </div>
