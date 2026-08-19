@@ -11,7 +11,7 @@ export function Hero() {
         <div className="flex justify-center">
           <Badge>Aplicativos Exclusivos</Badge>
         </div>
-        <h1 className="mx-auto mt-8 max-w-4xl text-5xl font-bold leading-[1.05] tracking-tight text-white sm:text-6xl md:text-7xl">
+        <h1 className="mx-auto mt-8 max-w-4xl text-5xl font-semibold leading-[1.05] tracking-[-0.03em] text-white sm:text-6xl md:text-[60px]">
           Um aplicativo <span className="text-gradient">feito sob medida para a sua marca.</span>{" "}
           Não um template. O seu.
         </h1>

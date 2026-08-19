@@ -32,7 +32,7 @@ export function SectionHeading({
           <Badge>{badge}</Badge>
         </div>
       )}
-      <h2 className="mt-6 text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl">
+      <h2 className="mt-6 text-4xl font-semibold leading-tight tracking-[-0.02em] text-white sm:text-5xl">
         {title} {highlight && <span className="text-gradient">{highlight}</span>}
         {after && ` ${after}`}
       </h2>

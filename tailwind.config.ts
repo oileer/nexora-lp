@@ -25,7 +25,7 @@ export default {
         },
       },
       fontFamily: {
-        sans: ["var(--font-poppins)", "system-ui", "sans-serif"],
+        sans: ["var(--font-dm-sans)", "system-ui", "sans-serif"],
       },
       boxShadow: {
         glow: "0 0 60px -10px rgba(29,111,242,0.55)",
